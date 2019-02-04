@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  hello:
+    network_mode: "host"
+    build:
+      context: .
+    restart: always
+    user: ${CURRENT_UID}
+    ports:
+    - ${RHPORT}:${RHPORT}
+    volumes:
+    - ./app/:/app/
+    entrypoint: [ "xsp4","--port","${RHPORT}","--nonstop"]
